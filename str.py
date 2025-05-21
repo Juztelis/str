@@ -1,36 +1,25 @@
-
-with open('str/duom.txt', 'r', encoding='utf-8') as f:
+with open('atbash/str-main/str-main/duom.txt', 'r', encoding='utf-8') as f:
     text = f.readline()
-    k = []
-    # print(listas2)
 
-    dict = {
-        "A": "Z",
-        "B": "Y",
-        "C": "X",
-        "D": "W",
-        "E": "V",
-        "F": "U",
-        "G": "T",
-        "H": "S",
-        "I": "R",
-        "J": "Q",
-        "K": "P",
-        "L": "O",
-        "M": "N" 
-    }
+lookup_table = {'a':'z', 'b':'y', 'c':'x', 'd':'w', 'e':'v', 'f':'u', 'g':'t', 'h':'s', 'i':'r', 'j':'q', 'k':'p',
+    'l':'o', 'm':'n', 'z':'a', 'y':'b', 'x':'c', 'w':'d', 'v':'e', 'u':'f', 't':'g', 's':'h',
+    'r':'i', 'q':'j', 'p':'k', 'o':'l', '!':'!','?':'?','_':'_'}
 
-    for i in text:
-        if i.upper() in dict:
-            new_char = dict[i.upper()]
-            if i.islower():
-                new_char = new_char.lower()
-            k.append(new_char)
-        else:
-            k.append(i)
+def atbash(text):
+	cipher = ''
+	for letter in text:
+		if(letter != ' '):
+			cipher += lookup_table[letter]
+		else:
+			cipher += ' '
 
-    transformed = ''.join(k)
-    print(transformed)
+	return cipher
+
+message = text
+sitas=atbash(message.lower())   
+
+with open("atbash/str-main/str-main/duomrez.txt", "w", encoding="utf-8") as file:
+    file.write(sitas)
 
 
         
